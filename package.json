@@ -35,5 +35,27 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "plugin/**/*.(ts)x": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@types/slate": "^0.47.5",
+    "@types/slate-react": "^0.22.9",
+    "commitlint": "^8.3.5",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "slate": "^0.57.1",
+    "slate-react": "^0.57.1"
   }
 }
