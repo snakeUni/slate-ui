@@ -14,10 +14,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
+    "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
-      "@slate-type": ["./types/base.ts"]
+      "@slate-type": ["./types/index.ts"]
     }
   },
-  "include": ["src", "plugin"]
+  "include": ["src", "plugin", "utils", "types"]
 }
