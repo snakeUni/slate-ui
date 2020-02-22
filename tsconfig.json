@@ -17,6 +17,8 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
+      "@slate-ui": ["./plugin/index.tsx"],
+      "@slate-utils": ["./utils/index.ts"],
       "@slate-type": ["./types/index.ts"]
     }
   },

@@ -2,6 +2,9 @@ import React, { useMemo, useState } from 'react'
 import { createEditor } from 'slate'
 // Import the Slate components and React plugin.
 import { Slate, Editable, withReact } from 'slate-react'
+import { toggleCodeBlock } from '@slate-utils'
+import { EditorType } from '@slate-type'
+import { CodeBlock, DefaultComponent } from '@slate-ui'
 import './App.css'
 
 function App() {
@@ -18,11 +21,21 @@ function App() {
       <Slate editor={editor} value={value} onChange={value => setValue(value as any)}>
         <Editable
           onKeyDown={event => {
-            if (event.key === '&') {
-              // Prevent the ampersand character from being inserted.
+            if (event.key === '`' && event.ctrlKey) {
               event.preventDefault()
-              // Execute the `insertText` method when the event occurs.
-              editor.insertText('and')
+              // Determine whether any of the currently selected blocks are code blocks.
+              toggleCodeBlock(editor, EditorType.PARAGRAPH)
+            }
+          }}
+          renderElement={props => {
+            switch (props.element.type) {
+              case EditorType.CODE: {
+                return <CodeBlock {...props} />
+              }
+
+              default: {
+                return <DefaultComponent {...props} />
+              }
             }
           }}
         />
